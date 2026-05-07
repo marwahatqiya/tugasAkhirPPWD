@@ -40,7 +40,6 @@ if (isset($_POST['login'])) {
             --secondary-color: #406AAF;
             --link-color: #F7DD7D;
             --text-color: #FFE8BE;
-
         }
 
         * {
