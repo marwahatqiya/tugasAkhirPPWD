@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $data['password'])) {
             $_SESSION['id'] = $data['id'];
             $_SESSION['user'] = $data['name'];
-            
+
             header("Location: dashboard.php");
             exit;
         } else {
@@ -47,208 +47,175 @@ if (isset($_POST['login'])) {
             --h5-size: 14px;
         }
 
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Segoe UI', sans-serif;
-            min-height: 100vh;
-            /*body setinggi halaman */
+            background:#f5f5f5;
+        }
+
+        .container-login {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        /* LEFT SIDE */
+
+        .left-side {
+            width: 40%;
+            height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('img/pic1.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
 
-        .title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-color);
-            gap: 8px;
-            padding: 16px;
-        }
-
-        .title h1 {
-            font-size: var(--h1-size);
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .title h2 {
-            font-size: var(--h2-size);
-            margin: 0;
+            background: white;
         }
 
         .form-container {
-            background-color: var(--primary-color);
-            padding: 32px 64px;
-            border-radius: 16px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.669);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .title h1 {
+            font-size: 42px;
+            font-weight: bold;
+            color: #427AB5;
+        }
+
+        .title p {
+            color: gray;
+            margin-bottom: 30px;
         }
 
         .form-control {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            padding: 8px 16px;
-            background-color: var(--link-color);
-            border: var(--highligh-color) solid 1.5px;
-            color: var(--text-color) !important;
-        }
-
-        .form-floating label {
-            color: var(--text-color);
-        }
-
-        .form-control:focus {
-            background-color: var(--link-color);
-            outline: none;
-            border-color: var(--highligh-color);
-            box-shadow: 0 0 0 0.25rem rgba(251, 144, 185, 0.395);
+            height: 55px;
+            border-radius: 12px;
         }
 
         .btn-primary {
-            margin: 32px 0 0 0;
-            width: 100%;
-            background-color: var(--secondary-color);
+            height: 50px;
+            border-radius: 12px;
+            background: #427AB5;
             border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            color: var(--text-color);
         }
 
         .btn-primary:hover {
-            background-color: var(--highligh-color);
+            background: #356291;
         }
 
-        .remember-container {
-            width: 100%;
+        .register {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* RIGHT SIDE */
+
+        .right-side {
+            width: 60%;
+            height: 100vh;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.4),
+                    rgba(0, 0, 0, 0.4)),
+
+                url('img/pic1.png');
+
+            background-size: cover;
+            background-position: center;
+
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            color: var(--text-color);
         }
 
-        .remember-container #rememberMe {
-            margin: 0;
+        .overlay {
+            text-align: center;
+            color: white;
         }
 
-        .remember-container a {
-            text-decoration: none;
-            color: var(--highligh-color);
-            font-size: var(--h5-size);
-            margin: 4px 0 0 0;
+        .overlay h1 {
+            font-size: 60px;
+            font-weight: bold;
         }
 
-        .remember-container a:hover {
-            color: var(--highligh-color);
-        }
-
-        .remember-me {
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            gap: 4px;
-            font-size: var(--h5-size);
-        }
-
-        .divider {
-            margin: 16px 0;
-            border: none;
-            border: 1px solid var(--highligh-color);
-            display: flex;
-            justify-content: center;
-        }
-
-        .btn-outline-primary {
-            margin-top: 16px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            border-color: var(--highligh-color);
-            color: var(--text-color);
-        }
-
-        .bi-google {
-            margin-right: 8px;
-        }
-
-        .btn-outline-primary:hover {
-            border: none;
-            background-color: var(--highligh-color);
-        }
-
-        .register p {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            gap: 8px;
-            padding: 8px;
-            font-size: var(--h4-size);
-        }
-
-        .register a {
-            text-decoration: none;
-            color: var(--highligh-color);
-        }
-
-        .register a:hover {
-            color: var(--highligh-color);
+        .overlay p {
+            font-size: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="form-container">
-        <div class="title">
-            <h1>Login</h1>
-            <p>Enter your email and password to continue</p>
-        </div>
-        <form action="login.php" method="post">
-            <div class="form-floating mb-3">
-                <input type="text" name="username" class="form-control" id="floatingUsername" placeholder="Username">
-                <label for="floatingUsername">Username</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword"
-                    placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <?php if ($error != "") { ?>
-                <div class="alert alert-danger">
-                    <?= $error; ?>
+
+    <div class="container-login">
+
+        <!-- LEFT -->
+        <div class="left-side">
+
+            <div class="form-container">
+
+                <div class="title">
+                    <h1>Login</h1>
+                    <p>Enter your username and password to continue</p>
                 </div>
-            <?php } ?>
-            <button type="submit" name="login" class="btn btn-primary"><b>Sign In</b></button>
-        </form>
 
-        <div class="remember-container">
-            <label class="remember-me">
-                <input type="checkbox" id="rememberMe">
-                <label for="rememberMe">Remember me</label>
-            </label>
+                <form action="login.php" method="post">
 
-            <a href="#">Need Help?</a>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="username" class="form-control" id="floatingUsername"
+                            placeholder="Username">
+
+                        <label for="floatingUsername">
+                            Username
+                        </label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" class="form-control" id="floatingPassword"
+                            placeholder="Password">
+
+                        <label for="floatingPassword">
+                            Password
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+
+                        <b>Sign In</b>
+
+                    </button>
+
+                </form>
+
+                <div class="register">
+                    <p>
+                        Don't have an account?
+                        <a href="register.php">Register</a>
+                    </p>
+                </div>
+
+            </div>
+
         </div>
 
-        <hr class="divider">
+        <!-- RIGHT -->
+        <div class="right-side">
 
-        <button type="button" class="btn btn-outline-primary ">
-            <i class="bi bi-google"></i> Login with Google
-        </button>
+            <div class="overlay">
+                <h1>WishFund</h1>
+                <p>Save your dreams one step at a time</p>
+            </div>
 
-        <div class="register">
-            <p>New in Movix? <a href="register.php">Register</a></p>
         </div>
+
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
