@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "koneksi.php";
 
 if (isset($_POST['register'])) {
@@ -8,7 +9,9 @@ if (isset($_POST['register'])) {
     $confirm = $_POST['confirm_password'];
 
     if ($password != $confirm) {
-        echo "Password tidak sama!";
+        $_SESSION['error'] = "Password tidak sama!";
+        header("Location: register.php");
+        exit;
     } else {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $cek = mysqli_query(
@@ -17,17 +20,23 @@ if (isset($_POST['register'])) {
         );
 
         if (mysqli_num_rows($cek) > 0) {
-            echo "Email sudah digunakan!";
+            $_SESSION['error'] = "Email sudah digunakan!";
+            header("Location: register.php");
+            exit;
         } else {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO users(email, name, password)
               VALUES('$email', '$username', '$hash')";
 
             if (mysqli_query($konek, $query)) {
+                $_SESSION['success'] = "Register berhasil! Silakan login.";
                 header("Location: login.php");
                 exit;
+                exit;
             } else {
-                echo mysqli_error($konek);
+                $_SESSION['error'] = "Terjadi kesalahan saat registrasi!";
+                header("Location: register.php");
+                exit;
             }
         }
     }
@@ -165,6 +174,17 @@ if (isset($_POST['register'])) {
             <div class="form-container">
 
                 <div class="title">
+                    <?php
+                    if (isset($_SESSION['error'])) {
+                        echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+                        unset($_SESSION['error']);
+                    }
+
+                    if (isset($_SESSION['success'])) {
+                        echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+                        unset($_SESSION['success']);
+                    }
+                    ?>
                     <h1>Register</h1>
                     <p>Create your WishFund account</p>
                 </div>

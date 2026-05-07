@@ -2,7 +2,7 @@
 session_start();
 require "koneksi.php";
 
-$error = "";
+
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -10,6 +10,7 @@ if (isset($_POST['login'])) {
     $query = mysqli_query($konek, "SELECT * FROM users WHERE name='$username'");
     if (mysqli_num_rows($query) > 0) {
         $data = mysqli_fetch_assoc($query);
+
         if (password_verify($password, $data['password'])) {
             $_SESSION['id'] = $data['id'];
             $_SESSION['user'] = $data['name'];
@@ -17,10 +18,14 @@ if (isset($_POST['login'])) {
             header("Location: dashboard.php");
             exit;
         } else {
-            $error = "Password salah!";
+            $_SESSION['error'] = "Password salah!";
+            header("Location: login.php");
+            exit;
         }
     } else {
-        $error = "Username tidak ditemukan!";
+        $_SESSION['error'] = "Username tidak ditemukan!";
+        header("Location: login.php");
+        exit;
     }
 }
 ?>
@@ -50,7 +55,7 @@ if (isset($_POST['login'])) {
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            background:#f5f5f5;
+            background: #f5f5f5;
         }
 
         .container-login {
@@ -155,6 +160,17 @@ if (isset($_POST['login'])) {
             <div class="form-container">
 
                 <div class="title">
+                    <?php
+                    if (isset($_SESSION['error'])) {
+                        echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+                        unset($_SESSION['error']);
+                    }
+
+                    if (isset($_SESSION['success'])) {
+                        echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+                        unset($_SESSION['success']);
+                    }
+                    ?>
                     <h1>Login</h1>
                     <p>Enter your username and password to continue</p>
                 </div>
