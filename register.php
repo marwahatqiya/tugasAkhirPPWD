@@ -50,11 +50,6 @@ if (isset($_POST['register'])) {
             --secondary-color: #406AAF;
             --link-color: #F7DD7D;
             --text-color: #FFE8BE;
-
-            --h1-size: 32px;
-            --h2-size: 24px;
-            --h4-size: 16px;
-            --h5-size: 14px;
         }
 
         * {
