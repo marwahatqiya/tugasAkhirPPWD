@@ -179,7 +179,7 @@ if (isset($_POST['login'])) {
                         </label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">
+                    <button type="submit" name="login" class="btn btn-primary w-100">
 
                         <b>Sign In</b>
 
