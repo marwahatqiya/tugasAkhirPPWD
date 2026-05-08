@@ -2,7 +2,6 @@
 session_start();
 require "koneksi.php";
 
-
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -65,7 +64,6 @@ if (isset($_POST['login'])) {
         }
 
         /* LEFT SIDE */
-
         .left-side {
             width: 40%;
             height: 100vh;
@@ -115,17 +113,11 @@ if (isset($_POST['login'])) {
         }
 
         /* RIGHT SIDE */
-
         .right-side {
             width: 60%;
             height: 100vh;
 
-            background:
-                linear-gradient(rgba(0, 0, 0, 0.4),
-                    rgba(0, 0, 0, 0.4)),
-
-                url('img/pic1.png');
-
+            background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('img/pic1.png');
             background-size: cover;
             background-position: center;
 
@@ -196,9 +188,7 @@ if (isset($_POST['login'])) {
                     </div>
 
                     <button type="submit" name="login" class="btn btn-primary w-100">
-
                         <b>Sign In</b>
-
                     </button>
 
                 </form>

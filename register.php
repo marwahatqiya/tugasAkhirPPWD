@@ -56,8 +56,8 @@ if (isset($_POST['register'])) {
     <style>
         :root {
             --primary-color: #427AB5;
-            --secondary-color: #406AAF;
-            --link-color: #F7DD7D;
+            --secondary-color: #356291;
+            --link-color: #f5f5f5;
             --text-color: #FFE8BE;
         }
 
@@ -69,7 +69,7 @@ if (isset($_POST['register'])) {
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f5f5f5;
+            background: var(--link-color);
         }
 
         .container-login {
@@ -79,7 +79,6 @@ if (isset($_POST['register'])) {
         }
 
         /* LEFT SIDE */
-
         .left-side {
             width: 40%;
             height: 100vh;
@@ -99,7 +98,7 @@ if (isset($_POST['register'])) {
         .title h1 {
             font-size: 42px;
             font-weight: bold;
-            color: #427AB5;
+            color: var(--primary-color);
         }
 
         .title p {
@@ -115,12 +114,12 @@ if (isset($_POST['register'])) {
         .btn-primary {
             height: 50px;
             border-radius: 12px;
-            background: #427AB5;
+            background: var(--primary-color);
             border: none;
         }
 
         .btn-primary:hover {
-            background: #356291;
+            background: var(--secondary-color);
         }
 
         .register {
@@ -129,17 +128,11 @@ if (isset($_POST['register'])) {
         }
 
         /* RIGHT SIDE */
-
         .right-side {
             width: 60%;
             height: 100vh;
 
-            background:
-                linear-gradient(rgba(0, 0, 0, 0.4),
-                    rgba(0, 0, 0, 0.4)),
-
-                url('img/pic1.png');
-
+            background:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url('img/pic1.png');
             background-size: cover;
             background-position: center;
 
@@ -195,10 +188,8 @@ if (isset($_POST['register'])) {
 
                         <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email"
                             required>
-
                         <label for="floatingEmail">
-                            Email
-                        </label>
+                            Email</label>
 
                     </div>
 
@@ -206,10 +197,8 @@ if (isset($_POST['register'])) {
 
                         <input type="text" name="username" class="form-control" id="floatingUsername"
                             placeholder="Username" required>
-
                         <label for="floatingUsername">
-                            Username
-                        </label>
+                            Username</label>
 
                     </div>
 
@@ -217,10 +206,8 @@ if (isset($_POST['register'])) {
 
                         <input type="password" name="password" class="form-control" id="floatingPassword"
                             placeholder="Password" required>
-
                         <label for="floatingPassword">
-                            Password
-                        </label>
+                            Password</label>
 
                     </div>
 
@@ -228,29 +215,20 @@ if (isset($_POST['register'])) {
 
                         <input type="password" name="confirm_password" class="form-control" id="floatingConfirmPassword"
                             placeholder="Confirm Password" required>
-
                         <label for="floatingConfirmPassword">
-                            Confirm Password
-                        </label>
+                            Confirm Password </label>
 
                     </div>
 
                     <button type="submit" name="register" class="btn btn-primary w-100">
-
                         <b>Sign Up</b>
-
                     </button>
 
                 </form>
 
                 <div class="register">
 
-                    <p>
-                        Already have an account?
-                        <a href="login.php">
-                            Login
-                        </a>
-                    </p>
+                    <p>Already have an account?<a href="login.php">Login</a></p>
 
                 </div>
 
@@ -262,12 +240,9 @@ if (isset($_POST['register'])) {
         <div class="right-side">
 
             <div class="overlay">
-
                 <h1>WishFund</h1>
 
-                <p>
-                    Save your dreams one step at a time
-                </p>
+                <p>Save your dreams one step at a time</p>
 
             </div>
 

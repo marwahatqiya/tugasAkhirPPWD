@@ -48,7 +48,6 @@ $user = $_SESSION['user'];
             background: #f5f5f5;
         }
 
-        /* Sidebar Style - Konsisten dengan Dashboard */
         .sidebar {
             position: fixed;
             left: 0;
@@ -137,7 +136,6 @@ $user = $_SESSION['user'];
             align-items: center;
         }
 
-        /* Form Card Style */
         .card-box {
             background: white;
             padding: 30px;

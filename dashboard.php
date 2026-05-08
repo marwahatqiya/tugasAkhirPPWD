@@ -127,6 +127,7 @@ $user = $_SESSION['user'];
 
         .content {
             padding: 30px;
+            padding-bottom: 120px;
             flex: 1;
         }
 
@@ -171,14 +172,24 @@ $user = $_SESSION['user'];
 
         /* Footer Style for Total Tabungan */
         .footer-savings {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 250px;
+            width: calc(100% - 250px);
+
             background: white;
             padding: 20px 30px;
             border-top: 2px solid #ddd;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             font-size: 22px;
             font-weight: bold;
+
+            z-index: 999;
         }
     </style>
 </head>
