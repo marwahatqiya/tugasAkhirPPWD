@@ -2,17 +2,17 @@
 session_start();
 require "koneksi.php";
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $user_id = $_SESSION['id'];
     $nama_barang = $_POST['nama_barang'];
     $harga = $_POST['harga'];
 
     $query = mysqli_query($konek, "INSERT INTO wishlist(user_id, nama_barang, harga, status) VALUES('$user_id', '$nama_barang', '$harga', 'belum')");
 
-    if($query){
+    if ($query) {
         header("Location: dashboard.php");
         exit;
-    }else {
+    } else {
         echo "Gagal tambah wishlist!";
     }
 }
@@ -131,8 +131,10 @@ $user = $_SESSION['user'];
 
         .content {
             padding: 30px;
-            max-width: 800px;
-            /* Membuat form tidak terlalu lebar */
+            min min-height: calc(100vh - 70px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Form Card Style */
@@ -141,6 +143,8 @@ $user = $_SESSION['user'];
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
         }
 
         .card-box h3 {
