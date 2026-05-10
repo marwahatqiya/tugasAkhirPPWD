@@ -212,7 +212,7 @@ if (isset($_POST['register'])) {
                     <div class="form-floating mb-3">
 
                         <input type="text" name="username" class="form-control" id="floatingUsername"
-                            placeholder="Username" required>
+                            placeholder="Username" maxlength="20" required>
                         <label for="floatingUsername">
                             Username</label>
 
