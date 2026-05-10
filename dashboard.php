@@ -190,6 +190,12 @@ $user = $_SESSION['user'];
             font-weight: bold;
 
             z-index: 999;
+            transition: 0.3s;
+        }
+
+        .footer-savings.full {
+            left: 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -267,7 +273,7 @@ $user = $_SESSION['user'];
         </div>
     </div>
 
-    <div class="footer-savings">
+    <div class="footer-savings" id="footerSavings">
         <h3>Total Tabungan</h3>
 
         <h1>Rp <?= number_format($totalTabungan); ?></h1>
@@ -279,6 +285,7 @@ $user = $_SESSION['user'];
         function toggleSidebar() {
             document.getElementById("sidebar").classList.toggle("hide");
             document.getElementById("main").classList.toggle("full");
+             document.getElementById("footerSavings").classList.toggle("full");
         }
     </script>
 
