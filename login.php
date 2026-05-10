@@ -2,21 +2,27 @@
 session_start();
 require "koneksi.php";
 
+// mengecek tombol login ditekan
 if (isset($_POST['login'])) {
+    // mengambil input user
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // mencari username di database
     $query = mysqli_query($konek, "SELECT * FROM users WHERE name='$username'");
     if (mysqli_num_rows($query) > 0) {
+        // mengambil data user
         $data = mysqli_fetch_assoc($query);
 
+        // mengecek password
         if (password_verify($password, $data['password'])) {
+            // jika password benar
             $_SESSION['id'] = $data['id'];
             $_SESSION['user'] = $data['name'];
-
             header("Location: dashboard.php");
             exit;
         } else {
+            // jika password salah
             $_SESSION['error'] = "Password salah!";
             header("Location: login.php");
             exit;
@@ -171,7 +177,7 @@ if (isset($_POST['login'])) {
 
                     <div class="form-floating mb-3">
                         <input type="text" name="username" class="form-control" id="floatingUsername"
-                            placeholder="Username">
+                            placeholder="Username" required>
 
                         <label for="floatingUsername">
                             Username
@@ -180,7 +186,7 @@ if (isset($_POST['login'])) {
 
                     <div class="form-floating mb-3">
                         <input type="password" name="password" class="form-control" id="floatingPassword"
-                            placeholder="Password">
+                            placeholder="Password" required>
 
                         <label for="floatingPassword">
                             Password
