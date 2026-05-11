@@ -170,6 +170,33 @@ $user = $_SESSION['user'];
             color: #356291;
         }
 
+        .custom-alert {
+            position: fixed;
+
+            top: 20px;
+            left: 270px;
+            right: 20px;
+
+            z-index: 2000;
+
+            transition: 0.3s;
+        }
+
+        .custom-alert.full {
+            left: 20px;
+        }
+
+        .delete-icon {
+            font-size: 22px;
+            color: gray;
+            transition: 0.2s;
+        }
+
+        .delete-icon:hover {
+            color: #dc3545;
+            transform: scale(1.05);
+        }
+
         /* Footer Style for Total Tabungan */
         .footer-savings {
             position: fixed;
@@ -201,6 +228,22 @@ $user = $_SESSION['user'];
 </head>
 
 <body>
+
+    <?php if (isset($_SESSION['hapus'])) { ?>
+
+        <div class="custom-alert" id="customAlert">
+
+            <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                Wishlist berhasil dihapus!
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert">
+                </button>
+            </div>
+
+        </div>
+
+        <?php unset($_SESSION['hapus']); ?>
+    <?php } ?>
 
     <div class="sidebar" id="sidebar">
 
@@ -264,9 +307,18 @@ $user = $_SESSION['user'];
                                 Rp <?= number_format($data['harga']); ?>
                             </h5>
                         </div>
-                        <a href="checkout.php?item=headset3" class="cart-icon">
-                            <i class="bi bi-cart-plus"></i>
-                        </a>
+                        <div style="display:flex; gap:15px; align-items:center;">
+
+                            <a href="checkout.php?item=headset3" class="cart-icon">
+                                <i class="bi bi-cart-plus"></i>
+                            </a>
+
+                            <a href="konfirmasiHapus.php?id=<?= $data['id']; ?>" class="delete-icon">
+
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
+
+                        </div>
                     </div>
                 <?php } ?>
             </div>
@@ -285,10 +337,12 @@ $user = $_SESSION['user'];
         function toggleSidebar() {
             document.getElementById("sidebar").classList.toggle("hide");
             document.getElementById("main").classList.toggle("full");
-             document.getElementById("footerSavings").classList.toggle("full");
+            document.getElementById("footerSavings").classList.toggle("full");
+
+            document.getElementById("customAlert")?.classList.toggle("full");
         }
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
