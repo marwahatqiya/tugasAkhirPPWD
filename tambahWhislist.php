@@ -130,7 +130,7 @@ $user = $_SESSION['user'];
 
         .content {
             padding: 30px;
-            min min-height: calc(100vh - 70px);
+            min-height: calc(100vh - 70px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -166,7 +166,7 @@ $user = $_SESSION['user'];
 
         .form-control:focus {
             border-color: #427AB5;
-            box-shadow: 0 0 0 0.25 margin-left;
+            box-shadow: 0 0 0 0.25rem rgba(66, 122, 181, 0.25);
             rgba(66, 122, 181, 0.25);
         }
 
@@ -200,12 +200,15 @@ $user = $_SESSION['user'];
             <a href="dashboard.php">
                 <i class="bi bi-house-door"></i> Home
             </a>
-            <a href="tambahWhislist.php">
+
+            <a href="tambahWhislist.php" class="active">
                 <i class="bi bi-plus-circle"></i> Tambah Wishlist
             </a>
+
             <a href="tambahTabungan.php">
                 <i class="bi bi-wallet2"></i> Tambah Tabungan
             </a>
+
             <a href="riwayatCheckout.php">
                 <i class="bi bi-cart-check"></i> Riwayat Checkout
             </a>
@@ -219,7 +222,9 @@ $user = $_SESSION['user'];
             </button>
 
             <div class="user-area">
-                <h5><?= $user; ?></h5>
+                <h5>
+                    <i class="bi bi-person-circle"></i> <?= $user; ?>
+                </h5>
                 <a href="logout.php">
                     <button class="logout-btn">Logout</button>
                 </a>
