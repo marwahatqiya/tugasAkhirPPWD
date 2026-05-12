@@ -10,12 +10,7 @@ $dataTabungan = mysqli_fetch_assoc($queryTabungan);
 
 $totalTabungan = $dataTabungan['total'];
 
-$dataWishlist = mysqli_query($konek, "SELECT * FROM wishlist
-WHERE user_id = '$user_id'");
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
-}
+$dataWishlist = mysqli_query($konek, "SELECT * FROM wishlist WHERE user_id = '$user_id' AND status = 'belum'");
 
 $user = $_SESSION['user'];
 ?>
@@ -252,26 +247,11 @@ $user = $_SESSION['user'];
         </div>
 
         <div class="menu">
-            <a href="dashboard.php">
-                <i class="bi bi-house-door"></i>
-                Home
-            </a>
-
-            <a href="tambahWhislist.php">
-                <i class="bi bi-plus-circle"></i>
-                Tambah Wishlist
-            </a>
-
-            <a href="tambahTabungan.php">
-                <i class="bi bi-wallet2"></i>
-                Tambah Tabungan
-            </a>
-
-            <a href="checkout.php">
-                <i class="bi bi-cart-check"></i>
-                Checkout
-            </a>
-        </div>
+    <a href="dashboard.php"><i class="bi bi-house-door"></i> Home</a>
+    <a href="tambahWhislist.php"><i class="bi bi-plus-circle"></i> Tambah Wishlist</a>
+    <a href="tambahTabungan.php"><i class="bi bi-wallet2"></i> Tambah Tabungan</a>
+    <a href="riwayatCheckout.php"><i class="bi bi-cart-check"></i> Riwayat Checkout</a>
+</div>
 
     </div>
 
@@ -306,11 +286,11 @@ $user = $_SESSION['user'];
                             <h5>
                                 Rp <?= number_format($data['harga']); ?>
                             </h5>
-                        </div>
-                        <div style="display:flex; gap:15px; align-items:center;">
+                            </div>
+                            <div style="display:flex; gap:15px; align-items:center;">
 
-                            <a href="checkout.php?item=headset3" class="cart-icon">
-                                <i class="bi bi-cart-plus"></i>
+                            <a href="Checkout.php?id=<?= $data['id']; ?>" class="cart-icon">
+                               <i class="bi bi-cart-plus"></i>
                             </a>
 
                             <a href="konfirmasiHapus.php?id=<?= $data['id']; ?>" class="delete-icon">
