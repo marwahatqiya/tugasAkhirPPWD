@@ -11,9 +11,7 @@ $user_id = $_SESSION['id'];
 $user = $_SESSION['user'];
 
 // Mengambil data wishlist yang sudah dibeli
-$queryHistory = mysqli_query(
-    $konek,
-    "SELECT * FROM wishlist 
+$queryHistory = mysqli_query($konek, "SELECT * FROM wishlist 
 WHERE user_id = '$user_id' 
 AND (status = 'terwujud' OR status = 'dihapus')
 ORDER BY id DESC"
