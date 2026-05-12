@@ -2,27 +2,24 @@
 session_start();
 require "koneksi.php";
 
-// mengecek tombol login ditekan
 if (isset($_POST['login'])) {
-    // mengambil input user
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // mencari username di database
     $query = mysqli_query($konek, "SELECT * FROM users WHERE name='$username'");
     if (mysqli_num_rows($query) > 0) {
-        // mengambil data user
+
         $data = mysqli_fetch_assoc($query);
 
-        // mengecek password
+
         if (password_verify($password, $data['password'])) {
-            // jika password benar
+
             $_SESSION['id'] = $data['id'];
             $_SESSION['user'] = $data['name'];
             header("Location: dashboard.php");
             exit;
         } else {
-            // jika password salah
+
             $_SESSION['error'] = "Password salah!";
             header("Location: login.php");
             exit;
@@ -69,7 +66,6 @@ if (isset($_POST['login'])) {
             display: flex;
         }
 
-        /* LEFT SIDE */
         .left-side {
             width: 40%;
             height: 100vh;
@@ -118,7 +114,6 @@ if (isset($_POST['login'])) {
             text-align: center;
         }
 
-        /* RIGHT SIDE */
         .right-side {
             width: 60%;
             height: 100vh;
@@ -152,7 +147,6 @@ if (isset($_POST['login'])) {
 
     <div class="container-login">
 
-        <!-- LEFT -->
         <div class="left-side">
 
             <div class="form-container">
@@ -210,7 +204,6 @@ if (isset($_POST['login'])) {
 
         </div>
 
-        <!-- RIGHT -->
         <div class="right-side">
 
             <div class="overlay">
