@@ -11,7 +11,13 @@ $user_id = $_SESSION['id'];
 $user = $_SESSION['user'];
 
 // Mengambil data wishlist yang sudah dibeli
-$queryHistory = mysqli_query($konek, "SELECT * FROM wishlist WHERE user_id = '$user_id' AND status = 'terwujud' ORDER BY id DESC");
+$queryHistory = mysqli_query(
+    $konek,
+    "SELECT * FROM wishlist 
+WHERE user_id = '$user_id' 
+AND (status = 'terwujud' OR status = 'dihapus')
+ORDER BY id DESC"
+);
 if (!$queryHistory) {
     die("Query gagal: " . mysqli_error($konek));
 }
@@ -244,9 +250,21 @@ if (!$queryHistory) {
                                     </td>
 
                                     <td>
-                                        <span class="badge-success">
-                                            Berhasil Dibeli
-                                        </span>
+
+                                        <?php if ($data['status'] == 'terwujud') { ?>
+
+                                            <span class="badge bg-success">
+                                                Berhasil Dibeli
+                                            </span>
+
+                                        <?php } elseif ($data['status'] == 'dihapus') { ?>
+
+                                            <span class="badge bg-danger">
+                                                Wishlist Dihapus
+                                            </span>
+
+                                        <?php } ?>
+
                                     </td>
 
                                 </tr>

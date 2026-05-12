@@ -4,7 +4,9 @@ require "koneksi.php";
 
 $id = $_GET['id'];
 
-mysqli_query($konek, "DELETE FROM wishlist WHERE id='$id'");
+$query = mysqli_query($konek,
+    "UPDATE wishlist SET status='dihapus' WHERE id='$id'"
+);
 
 $_SESSION['hapus'] = true;
 
