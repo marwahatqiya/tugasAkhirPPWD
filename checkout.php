@@ -28,7 +28,7 @@ if ($total_tabungan >= $harga_barang) {
     $pengurangan = -$harga_barang;
     mysqli_query($konek, "INSERT INTO tabungan(user_id, nominal) VALUES('$user_id', '$pengurangan')");
     
-    mysqli_query($konek, "UPDATE wishlist SET status = 'sudah' WHERE id = '$wishlist_id'");
+    mysqli_query($konek, "UPDATE wishlist SET status = 'terwujud' WHERE id = '$wishlist_id'");
     
     header("Location: checkoutBerhasil.php");
 } else {
