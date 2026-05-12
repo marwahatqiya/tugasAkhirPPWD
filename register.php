@@ -2,38 +2,30 @@
 session_start();
 require "koneksi.php";
 
-//mengecek tombol register jika ditekan
 if (isset($_POST['register'])) {
-    // mengirim data menggunakan metode post
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm = $_POST['confirm_password'];
 
-    // mengecek pasword yang dimasukan
     if ($password != $confirm) {
         $_SESSION['error'] = "Password tidak sama!";
         header("Location: register.php");
         exit;
     } else {
-        // mengecek email sudah dipakai atau belum
         $cek = mysqli_query(
             $konek,
             "SELECT * FROM users WHERE email='$email'"
         );
-        // kalo email sudah digunakan
         if (mysqli_num_rows($cek) > 0) {
             $_SESSION['error'] = "Email sudah digunakan!";
             header("Location: register.php");
             exit;
         } else {
-            // mengacak data pw sebelum disimpan
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            // menyimpan data baru
             $query = "INSERT INTO users(email, name, password)
               VALUES('$email', '$username', '$hash')";
 
-            // menjalankan query
             if (mysqli_query($konek, $query)) {
                 $_SESSION['success'] = "Register berhasil! Silakan login.";
                 header("Location: login.php");
@@ -83,7 +75,6 @@ if (isset($_POST['register'])) {
             display: flex;
         }
 
-        /* LEFT SIDE */
         .left-side {
             width: 40%;
             height: 100vh;
@@ -132,7 +123,6 @@ if (isset($_POST['register'])) {
             text-align: center;
         }
 
-        /* RIGHT SIDE */
         .right-side {
             width: 60%;
             height: 100vh;
@@ -164,44 +154,33 @@ if (isset($_POST['register'])) {
 
 <body>
 
-    <!-- yang membungkus semua halaman register -->
     <div class="container-login">
 
-        <!-- LEFT seluruh bagian kiri -->
         <div class="left-side">
 
-            <!-- bungkus isi form -->
             <div class="form-container">
 
                 <div class="title">
-                    <!-- megecek apakah ada pesan eror dr session -->
                     <?php
                     if (isset($_SESSION['error'])) {
-                        // menampilkan pesan error
                         echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
-                        // supaya pesan hilang setelah di refresh
                         unset($_SESSION['error']);
                     }
 
-                    // untuk pesan berhasil
                     if (isset($_SESSION['success'])) {
-                        // bootstrap alert warna ijo
                         echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
                         unset($_SESSION['success']);
                     }
                     ?>
-                    <!-- judul halaman -->
                     <h1>Register</h1>
                     <p>Create your WishFund account</p>
                 </div>
 
-                <!-- form register -->
                 <form action="" method="POST">
 
-                    <!-- ngebuat kotak email melayang -->
                     <div class="form-floating mb-3">
 
-                        <!-- input email kalo ada required wajib isi sebelum submit-->
+
                         <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email"
                             required>
                         <label for="floatingEmail">
@@ -212,7 +191,7 @@ if (isset($_POST['register'])) {
                     <div class="form-floating mb-3">
 
                         <input type="text" name="username" class="form-control" id="floatingUsername"
-                            placeholder="Username" maxlength="20" required>
+                            placeholder="Username" required>
                         <label for="floatingUsername">
                             Username</label>
 
@@ -236,7 +215,6 @@ if (isset($_POST['register'])) {
 
                     </div>
 
-                    <!-- tombol register, tombol bts warna biru lebar tombol 100% -->
                     <button type="submit" name="register" class="btn btn-primary w-100">
                         <b>Sign Up</b>
                     </button>
@@ -245,7 +223,6 @@ if (isset($_POST['register'])) {
 
                 <div class="register">
 
-                    <!-- tombol login -->
                     <p>Already have an account?<a href="login.php">Login</a></p>
 
                 </div>
@@ -254,10 +231,8 @@ if (isset($_POST['register'])) {
 
         </div>
 
-        <!-- RIGHT -->
         <div class="right-side">
 
-            <!-- lapisan transparan diatas background -->
             <div class="overlay">
                 <h1>WishFund</h1>
 
