@@ -48,9 +48,18 @@ $user = $_SESSION['user'];
     <div class="sidebar">
         <div class="logo">WishFund</div>
         <div class="menu">
-            <a href="dashboard.php"><i class="bi bi-house-door"></i> Home</a>
-            <a href="tambahWhislist.php"><i class="bi bi-plus-circle"></i> Tambah Wishlist</a>
-            <a href="tambahTabungan.php"><i class="bi bi-wallet2"></i> Tambah Tabungan</a>
+            <a href="dashboard.php">
+                <i class="bi bi-house-door"></i> Home
+            </a>
+            <a href="tambahWhislist.php">
+                <i class="bi bi-plus-circle"></i> Tambah Wishlist
+            </a>
+            <a href="tambahTabungan.php">
+                <i class="bi bi-wallet2"></i> Tambah Tabungan
+            </a>
+            <a href="riwayatCheckout.php">
+                <i class="bi bi-cart-check"></i> Riwayat Checkout
+            </a>
         </div>
     </div>
 
